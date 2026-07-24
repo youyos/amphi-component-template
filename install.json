@@ -1,0 +1,5 @@
+{
+  "packageManager": "python",
+  "packageName": "amphi-custom-components",
+  "uninstallInstructions": "Remove @local/amphi-custom-components from the active JupyterLab labextensions directory."
+}

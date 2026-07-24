@@ -1,0 +1,5 @@
+# 将组件运行期 Python 依赖写在这里。
+pandas>=2.0,<3
+numpy>=1.26,<3
+# scikit-learn>=1.5,<2
+# xgboost>=2.1,<4
