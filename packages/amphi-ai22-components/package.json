@@ -1,0 +1,40 @@
+{
+  "name": "@local-ai/amphi-ai22-components",
+  "version": "1.0.1",
+  "description": "Fifty zero-code chart components in one unified Amphi sidebar group",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/*.js",
+    "lib/*.js.map",
+    "lib/*.d.ts"
+  ],
+  "scripts": {
+    "build": "jlpm run build:lib && jlpm run build:labextension",
+    "build:lib": "tsc --build",
+    "build:labextension": "jupyter labextension build --development True .",
+    "clean": "rimraf lib labextension tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@amphi/pipeline-components-manager": "*",
+    "@jupyterlab/application": ">=4.3.4 <5"
+  },
+  "devDependencies": {
+    "@jupyterlab/builder": "4.4.10",
+    "rimraf": "5.0.10",
+    "typescript": "5.8.3"
+  },
+  "jupyterlab": {
+    "extension": true,
+    "outputDir": "labextension",
+    "sharedPackages": {
+      "@amphi/pipeline-components-manager": {
+        "bundled": false,
+        "singleton": true,
+        "strictVersion": false
+      }
+    }
+  }
+}

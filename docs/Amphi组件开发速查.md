@@ -11,7 +11,7 @@
   → JupyterLab 启动时自动加入 Amphi ComponentManager
 ```
 
-自定义扩展使用 `@local/*`，不要修改或覆盖 `@amphi/*` 官方目录。
+自定义扩展使用 `@local-ai/*`，不要修改或覆盖 `@amphi/*` 官方目录。
 
 ## 每个新组件只改四处
 
@@ -32,10 +32,10 @@ index.ts 的 definition.id
 
 ```text
 package.json:
-@local/amphi-custom-components
+@local-ai/amphi-custom-components
 
 安装目录:
-share/jupyter/labextensions/@local/amphi-custom-components/
+share/jupyter/labextensions/@local-ai/amphi-custom-components/
 ```
 
 ## Python 代码最重要的兼容规则
@@ -74,7 +74,7 @@ python scripts/validate_embedded_python.py
 成功标志：
 
 ```text
-@local/amphi-custom-components v0.1.0 enabled OK
+@local-ai/amphi-custom-components v2.0.1 enabled OK
 ```
 
 然后完全重启 JupyterLab，并在浏览器硬刷新。

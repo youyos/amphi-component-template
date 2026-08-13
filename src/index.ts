@@ -1,5 +1,4 @@
 import {
-  JupyterFrontEnd,
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 import { ComponentManager } from '@amphi/pipeline-components-manager';
@@ -9,22 +8,33 @@ type ComponentService = {
   addComponent: (component: unknown) => void;
 };
 
-// 每新增一个组件，只需要在这里增加一项。
-// id 必须与组件构造函数传给 super() 的第二个参数完全一致。
+import { algorithmCatalog } from './algorithmCatalog';
+
+// 每个组件都有独立定义和全局唯一 id；共享模块只负责避免复制大型 Python 运行时。
 const componentDefinitions = [
+  ...algorithmCatalog.map(definition => ({
+    id: definition.id,
+    load: async () => {
+      const module = await import('./AlgorithmComponents');
+      return module.algorithmComponents.get(definition.id);
+    }
+  })),
   {
-    id: 'amphiComponentTemplate',
-    load: () => import('./AmphiComponentTemplate')
+    id: 'javaExecutor',
+    load: async () => {
+      const module = await import('./JavaExecutorComponent');
+      return module.default;
+    }
   }
 ];
 
 const plugin: JupyterFrontEndPlugin<void> = {
-  id: '@local/amphi-custom-components:plugin',
+  id: '@local-ai/amphi-custom-components:plugin',
   description: 'Registers custom built-in components in Amphi.',
   autoStart: true,
   requires: [ComponentManager],
   activate: (
-    _app: JupyterFrontEnd,
+    _app,
     componentService: ComponentService
   ): void => {
     const registerWhenCoreIsReady = async (attempt = 0): Promise<void> => {
@@ -44,8 +54,11 @@ const plugin: JupyterFrontEndPlugin<void> = {
 
       try {
         for (const definition of componentDefinitions) {
-          const componentModule = await definition.load();
-          componentService.addComponent(componentModule.default);
+          const component = await definition.load();
+          if (!component) {
+            throw new Error(`Component ${definition.id} could not be loaded.`);
+          }
+          componentService.addComponent(component);
           if (!componentService.getComponent(definition.id)) {
             throw new Error(
               `Component ${definition.id} was not found after registration.`

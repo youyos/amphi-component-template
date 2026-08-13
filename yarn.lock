@@ -866,35 +866,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/application@npm:4.4.10":
-  version: 4.4.10
-  resolution: "@jupyterlab/application@npm:4.4.10"
-  dependencies:
-    "@fortawesome/fontawesome-free": ^5.12.0
-    "@jupyterlab/apputils": ^4.5.10
-    "@jupyterlab/coreutils": ^6.4.10
-    "@jupyterlab/docregistry": ^4.4.10
-    "@jupyterlab/rendermime": ^4.4.10
-    "@jupyterlab/rendermime-interfaces": ^3.12.10
-    "@jupyterlab/services": ^7.4.10
-    "@jupyterlab/statedb": ^4.4.10
-    "@jupyterlab/translation": ^4.4.10
-    "@jupyterlab/ui-components": ^4.4.10
-    "@lumino/algorithm": ^2.0.3
-    "@lumino/application": ^2.4.4
-    "@lumino/commands": ^2.3.2
-    "@lumino/coreutils": ^2.2.1
-    "@lumino/disposable": ^2.1.4
-    "@lumino/messaging": ^2.0.3
-    "@lumino/polling": ^2.1.4
-    "@lumino/properties": ^2.0.3
-    "@lumino/signaling": ^2.1.4
-    "@lumino/widgets": ^2.7.1
-  checksum: 1901de5fc257304ad661015a83961473614946258e3132fbc122dd8022d3f8b2b2a3e26b2e8df848806055f3e9cfea0ff44c10c835aebfca037215b7ec4b9046
-  languageName: node
-  linkType: hard
-
-"@jupyterlab/application@npm:^4.1.5":
+"@jupyterlab/application@npm:>=4.3.4 <5, @jupyterlab/application@npm:^4.1.5":
   version: 4.6.2
   resolution: "@jupyterlab/application@npm:4.6.2"
   dependencies:
@@ -922,7 +894,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/apputils@npm:^4.1.5, @jupyterlab/apputils@npm:^4.5.10, @jupyterlab/apputils@npm:^4.7.2":
+"@jupyterlab/apputils@npm:^4.1.5, @jupyterlab/apputils@npm:^4.7.2":
   version: 4.7.2
   resolution: "@jupyterlab/apputils@npm:4.7.2"
   dependencies:
@@ -1087,7 +1059,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/coreutils@npm:^6.4.10, @jupyterlab/coreutils@npm:^6.6.2":
+"@jupyterlab/coreutils@npm:^6.6.2":
   version: 6.6.2
   resolution: "@jupyterlab/coreutils@npm:6.6.2"
   dependencies:
@@ -1101,7 +1073,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/docregistry@npm:^4.4.10, @jupyterlab/docregistry@npm:^4.6.2":
+"@jupyterlab/docregistry@npm:^4.6.2":
   version: 4.6.2
   resolution: "@jupyterlab/docregistry@npm:4.6.2"
   dependencies:
@@ -1168,7 +1140,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/rendermime-interfaces@npm:^3.12.10, @jupyterlab/rendermime-interfaces@npm:^3.14.2":
+"@jupyterlab/rendermime-interfaces@npm:^3.14.2":
   version: 3.14.2
   resolution: "@jupyterlab/rendermime-interfaces@npm:3.14.2"
   dependencies:
@@ -1178,7 +1150,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/rendermime@npm:^4.4.10, @jupyterlab/rendermime@npm:^4.6.2":
+"@jupyterlab/rendermime@npm:^4.6.2":
   version: 4.6.2
   resolution: "@jupyterlab/rendermime@npm:4.6.2"
   dependencies:
@@ -1198,7 +1170,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/services@npm:^7.4.10, @jupyterlab/services@npm:^7.6.2":
+"@jupyterlab/services@npm:^7.6.2":
   version: 7.6.2
   resolution: "@jupyterlab/services@npm:7.6.2"
   dependencies:
@@ -1236,7 +1208,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/statedb@npm:^4.4.10, @jupyterlab/statedb@npm:^4.6.2":
+"@jupyterlab/statedb@npm:^4.6.2":
   version: 4.6.2
   resolution: "@jupyterlab/statedb@npm:4.6.2"
   dependencies:
@@ -1265,7 +1237,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/translation@npm:^4.4.10, @jupyterlab/translation@npm:^4.6.2":
+"@jupyterlab/translation@npm:^4.6.2":
   version: 4.6.2
   resolution: "@jupyterlab/translation@npm:4.6.2"
   dependencies:
@@ -1278,7 +1250,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/ui-components@npm:^4.4.10, @jupyterlab/ui-components@npm:^4.6.2":
+"@jupyterlab/ui-components@npm:^4.6.2":
   version: 4.6.2
   resolution: "@jupyterlab/ui-components@npm:4.6.2"
   dependencies:
@@ -1491,13 +1463,63 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@local/amphi-custom-components@workspace:.":
+"@local-ai/amphi-ai14-components@workspace:packages/amphi-ai14-components":
   version: 0.0.0-use.local
-  resolution: "@local/amphi-custom-components@workspace:."
+  resolution: "@local-ai/amphi-ai14-components@workspace:packages/amphi-ai14-components"
   dependencies:
     "@amphi/pipeline-components-manager": "*"
-    "@jupyterlab/application": 4.4.10
+    "@jupyterlab/application": ">=4.3.4 <5"
     "@jupyterlab/builder": 4.4.10
+    rimraf: 5.0.10
+    typescript: 5.8.3
+  languageName: unknown
+  linkType: soft
+
+"@local-ai/amphi-ai22-components@workspace:packages/amphi-ai22-components":
+  version: 0.0.0-use.local
+  resolution: "@local-ai/amphi-ai22-components@workspace:packages/amphi-ai22-components"
+  dependencies:
+    "@amphi/pipeline-components-manager": "*"
+    "@jupyterlab/application": ">=4.3.4 <5"
+    "@jupyterlab/builder": 4.4.10
+    rimraf: 5.0.10
+    typescript: 5.8.3
+  languageName: unknown
+  linkType: soft
+
+"@local-ai/amphi-ai24-components@workspace:packages/amphi-ai24-components":
+  version: 0.0.0-use.local
+  resolution: "@local-ai/amphi-ai24-components@workspace:packages/amphi-ai24-components"
+  dependencies:
+    "@amphi/pipeline-components-manager": "*"
+    "@jupyterlab/application": ">=4.3.4 <5"
+    "@jupyterlab/builder": 4.4.10
+    rimraf: 5.0.10
+    typescript: 5.8.3
+  languageName: unknown
+  linkType: soft
+
+"@local-ai/amphi-ai27-components@workspace:packages/amphi-ai27-components":
+  version: 0.0.0-use.local
+  resolution: "@local-ai/amphi-ai27-components@workspace:packages/amphi-ai27-components"
+  dependencies:
+    "@amphi/pipeline-components-manager": "*"
+    "@jupyterlab/application": ">=4.3.4 <5"
+    "@jupyterlab/builder": 4.4.10
+    "@lumino/widgets": ">=2.6 <3"
+    rimraf: 5.0.10
+    typescript: 5.8.3
+  languageName: unknown
+  linkType: soft
+
+"@local-ai/amphi-custom-components@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@local-ai/amphi-custom-components@workspace:."
+  dependencies:
+    "@amphi/pipeline-components-manager": "*"
+    "@jupyterlab/application": ">=4.3.4 <5"
+    "@jupyterlab/builder": 4.4.10
+    "@lumino/widgets": ">=2.6 <3"
     rimraf: 5.0.10
     typescript: 5.8.3
   languageName: unknown
@@ -1597,7 +1619,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lumino/polling@npm:^2.1.4, @lumino/polling@npm:^2.1.5":
+"@lumino/polling@npm:^2.1.5":
   version: 2.1.6
   resolution: "@lumino/polling@npm:2.1.6"
   dependencies:
@@ -1634,7 +1656,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lumino/widgets@npm:^1.37.2 || ^2.8.0, @lumino/widgets@npm:^2.0.0, @lumino/widgets@npm:^2.7.1, @lumino/widgets@npm:^2.8.0, @lumino/widgets@npm:^2.9.0":
+"@lumino/widgets@npm:>=2.6 <3, @lumino/widgets@npm:^1.37.2 || ^2.8.0, @lumino/widgets@npm:^2.0.0, @lumino/widgets@npm:^2.7.1, @lumino/widgets@npm:^2.8.0, @lumino/widgets@npm:^2.9.0":
   version: 2.9.0
   resolution: "@lumino/widgets@npm:2.9.0"
   dependencies:

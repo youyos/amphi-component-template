@@ -1,0 +1,5 @@
+{
+  "packageManager": "python",
+  "packageName": "amphi-ai27-components",
+  "uninstallInstructions": "Remove @local-ai/amphi-ai27-components from the active JupyterLab labextensions directory."
+}

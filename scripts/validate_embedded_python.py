@@ -11,6 +11,12 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = ROOT / "src"
+ADDITIONAL_SOURCE_DIRS = [
+    ROOT / "packages" / "amphi-ai27-components" / "src",
+    ROOT / "packages" / "amphi-ai14-components" / "src",
+    ROOT / "packages" / "amphi-ai22-components" / "src",
+    ROOT / "packages" / "amphi-ai24-components" / "src",
+]
 STRING_RAW_PATTERN = re.compile(r"String\.raw`(?P<code>.*?)`;", re.DOTALL)
 
 
@@ -54,9 +60,11 @@ def amphi_format_variables(code: str) -> str:
 
 
 def main() -> int:
-    source_files = sorted(SOURCE_DIR.glob("*.ts")) + sorted(
-        SOURCE_DIR.glob("*.tsx")
-    )
+    source_directories = [SOURCE_DIR, *ADDITIONAL_SOURCE_DIRS]
+    source_files = []
+    for source_directory in source_directories:
+        source_files.extend(sorted(source_directory.glob("*.ts")))
+        source_files.extend(sorted(source_directory.glob("*.tsx")))
     checked = 0
     failures: list[str] = []
 

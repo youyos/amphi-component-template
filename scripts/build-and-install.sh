@@ -11,7 +11,8 @@ PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PYTHON_BIN="$VENV_DIR/bin/python"
 JUPYTER_BIN="$VENV_DIR/bin/jupyter"
 JLPM_BIN="$VENV_DIR/bin/jlpm"
-PACKAGE_SCOPE="@local"
+PACKAGE_SCOPE="@local-ai"
+LEGACY_PACKAGE_SCOPE="@local"
 PACKAGE_BASENAME="amphi-custom-components"
 export YARN_GLOBAL_FOLDER="$PROJECT_DIR/.yarn/global"
 export YARN_CACHE_FOLDER="$PROJECT_DIR/.yarn/cache"
@@ -33,10 +34,21 @@ cd "$PROJECT_DIR"
 
 DATA_DIR="$("$PYTHON_BIN" -c 'import sysconfig; print(sysconfig.get_path("data"))')"
 TARGET="$DATA_DIR/share/jupyter/labextensions/$PACKAGE_SCOPE/$PACKAGE_BASENAME"
+BACKUP_ROOT="$DATA_DIR/share/jupyter/labextension-backups/$PACKAGE_SCOPE"
+LEGACY_TARGET="$DATA_DIR/share/jupyter/labextensions/$LEGACY_PACKAGE_SCOPE/$PACKAGE_BASENAME"
+LEGACY_BACKUP_ROOT="$DATA_DIR/share/jupyter/labextension-backups/$LEGACY_PACKAGE_SCOPE"
 TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
 
+if [[ -d "$LEGACY_TARGET" ]]; then
+  mkdir -p "$LEGACY_BACKUP_ROOT"
+  LEGACY_BACKUP="$LEGACY_BACKUP_ROOT/${PACKAGE_BASENAME}.scope-migration-${TIMESTAMP}"
+  mv "$LEGACY_TARGET" "$LEGACY_BACKUP"
+  echo "Legacy extension moved to: $LEGACY_BACKUP"
+fi
+
 if [[ -d "$TARGET" ]]; then
-  BACKUP="${TARGET}.backup-${TIMESTAMP}"
+  mkdir -p "$BACKUP_ROOT"
+  BACKUP="$BACKUP_ROOT/${PACKAGE_BASENAME}.backup-${TIMESTAMP}"
   mv "$TARGET" "$BACKUP"
   echo "Previous extension moved to: $BACKUP"
 fi

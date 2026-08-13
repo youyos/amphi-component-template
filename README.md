@@ -1,16 +1,32 @@
-# Amphi 内置组件开发模板
+# Amphi 零代码算法、多语言、图形与文档报告扩展
 
 适用环境：
 
-- Python 3.11
-- JupyterLab 4.4.10
-- jupyterlab-amphi 0.9.7
+- Python >= 3.11
+- JupyterLab >= 4.3.4, < 5
+- jupyterlab-amphi >= 0.9.0, < 1
 - TypeScript 5.8
 
 该模板使用“伴生预构建 JupyterLab 扩展”自动调用 Amphi
 `ComponentManager.addComponent()`。不会修改 Amphi 官方包，升级、备份和卸载都更安全。
 
 快速流程可以查看 [`docs/Amphi组件开发速查.md`](docs/Amphi组件开发速查.md)。
+当前 5 个侧边栏分组、75 个算法的完整目录和配置方式见
+[`docs/75种零代码算法组件.md`](docs/75种零代码算法组件.md)。
+扩展还提供一个“编程语言组件”分组下的 Java 编程执行节点，支持 `.java`
+源文件和内联代码。
+R、Python、JavaScript、图形及文档报告组件与报告设计面板已经拆分到独立的
+`@local-ai/amphi-ai27-components` 扩展，完整说明见
+[`docs/多语言与文档报告组件.md`](docs/多语言与文档报告组件.md)。
+模型评估、最优模型选择、模型输出、读取和利用已拆分到
+`@local-ai/amphi-ai14-components` 扩展，使用说明见
+[`docs/模型评估与管理组件.md`](docs/模型评估与管理组件.md)。
+50 种零代码图表组件统一位于“图表组件”侧栏类别，并由独立的
+`@local-ai/amphi-ai22-components` 扩展，完整目录见
+[`docs/50种零代码图表组件.md`](docs/50种零代码图表组件.md)。
+19 个零代码分析计算组件统一位于“分析计算组件”侧栏类别，并由
+`@local-ai/amphi-ai24-components` 扩展，完整说明见
+[`docs/分析计算组件.md`](docs/分析计算组件.md)。
 使用 Codex 或其他开发代理维护该仓库时，请先阅读 [`AGENTS.md`](AGENTS.md)。
 
 ## 一、开发一个新组件
@@ -144,36 +160,41 @@ chmod +x scripts/build-and-install.sh
 6. 将 `labextension/` 安装到当前 Python 环境。
 7. 执行 `jupyter labextension list`。
 
-成功标志：
+成功标志（当前版本为 2.0.1）：
 
 ```text
-@local/amphi-custom-components v0.1.0 enabled OK
+@local-ai/amphi-custom-components v2.0.1 enabled OK
 ```
+
+安装器检测到旧的 `@local/amphi-custom-components` 时，会先将它移动到
+`labextension-backups/@local/`，再安装新的 `@local-ai` 扩展。
 
 安装后需要完全重启 JupyterLab，并在浏览器执行硬刷新。
 
 ## 六、发布和迁移
 
-只发布预构建扩展：
+生成带安装脚本、依赖清单、说明文档和 SHA-256 校验文件的离线发布包：
 
 ```bash
-tar -czf amphi-custom-components-0.1.0.tar.gz labextension
+./scripts/package-release.sh
 ```
 
-目标机器解压后，把 `labextension/` 内的内容复制到：
+产物位于：
 
 ```text
-<Python环境>/share/jupyter/labextensions/@local/amphi-custom-components/
+dist/amphi-custom-components-2.0.1.tar.gz
+dist/amphi-custom-components-2.0.1.tar.gz.sha256
 ```
 
-目录根部必须直接包含：
+目标机器解压后执行：
 
-```text
-package.json
-static/
+```bash
+./install.sh /absolute/path/to/python-venv
 ```
 
-Python 运行依赖需要另外通过 pip 或系统包管理器安装。
+发布包为预构建扩展，目标机器安装扩展本身不需要 Node.js 构建工具。运行
+JavaScript 脚本组件时需要 Node.js，运行 R 组件时需要 Rscript；Python 运行依赖
+根据包内 `python-requirements.txt` 单独安装。
 
 ## 七、发布前检查清单
 
@@ -190,5 +211,7 @@ Python 运行依赖需要另外通过 pip 或系统包管理器安装。
 - 嵌入式 Python 校验通过。
 - TypeScript 编译通过。
 - 使用真实 CSV 在 Amphi 中运行通过。
+- Java 执行组件使用真实 `javac` 和 `java` 完成编译、运行及结果 CSV 回读测试。
+- Python/JavaScript 脚本、SVG 图形、模板绑定、报告生成和报告导出测试通过。
 - `jupyter labextension list` 显示 `enabled OK`。
 - 重启 JupyterLab并硬刷新后仍能自动注册。

@@ -1,9 +1,12 @@
 {
-  "name": "@local/amphi-custom-components",
-  "version": "0.1.0",
-  "description": "Reusable built-in component extension template for Amphi",
+  "name": "@local-ai/amphi-custom-components",
+  "version": "2.0.1",
+  "description": "Zero-code algorithms and Java execution for Amphi",
   "license": "UNLICENSED",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -12,15 +15,18 @@
     "lib/*.d.ts"
   ],
   "scripts": {
-    "build": "jlpm run validate:python && jlpm run build:lib && jlpm run build:labextension",
-    "build:lib": "tsc --build",
+    "build": "jlpm run validate:python && jlpm run test:runtime && jlpm run build:lib && jlpm run build:labextension",
+    "build:lib": "tsc --build && tsc --build packages/amphi-ai27-components packages/amphi-ai14-components packages/amphi-ai22-components packages/amphi-ai24-components",
     "build:labextension": "jupyter labextension build --development True .",
-    "clean": "rimraf lib labextension tsconfig.tsbuildinfo",
-    "validate:python": "python scripts/validate_embedded_python.py"
+    "clean": "rimraf lib labextension tsconfig.tsbuildinfo packages/amphi-ai27-components/lib packages/amphi-ai27-components/labextension packages/amphi-ai27-components/tsconfig.tsbuildinfo packages/amphi-ai14-components/lib packages/amphi-ai14-components/labextension packages/amphi-ai14-components/tsconfig.tsbuildinfo packages/amphi-ai22-components/lib packages/amphi-ai22-components/labextension packages/amphi-ai22-components/tsconfig.tsbuildinfo packages/amphi-ai24-components/lib packages/amphi-ai24-components/labextension packages/amphi-ai24-components/tsconfig.tsbuildinfo",
+    "validate:python": "python scripts/validate_embedded_python.py",
+    "test:runtime": "python scripts/test_algorithm_runtime.py && python scripts/test_csv_pipeline.py && python scripts/test_java_runtime.py && python scripts/test_script_report_runtime.py && python scripts/test_ai14_runtime.py && python scripts/test_ai22_runtime.py && python scripts/test_ai24_runtime.py",
+    "test:generated": "node scripts/test_generated_component_code.mjs"
   },
   "dependencies": {
     "@amphi/pipeline-components-manager": "*",
-    "@jupyterlab/application": "4.4.10"
+    "@jupyterlab/application": ">=4.3.4 <5",
+    "@lumino/widgets": ">=2.6 <3"
   },
   "devDependencies": {
     "@jupyterlab/builder": "4.4.10",

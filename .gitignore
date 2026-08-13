@@ -1,8 +1,10 @@
 node_modules/
 lib/
 labextension/
+dist/
 tsconfig.tsbuildinfo
 .yarn/cache/
 .yarn/global/
+.yarn/install-state.gz
 scripts/__pycache__/
 *.pyc

@@ -1,5 +1,13 @@
 # 将组件运行期 Python 依赖写在这里。
 pandas>=2.0,<3
 numpy>=1.26,<3
-# scikit-learn>=1.5,<2
+scikit-learn>=1.5,<2
+
+# 当前 51 个组件不强制依赖以下可选库；共享运行时使用 scikit-learn 和 NumPy
+# 实现可移植的等价路径，避免 JupyterLab 环境缺少系统 OpenMP 时无法启动。
 # xgboost>=2.1,<4
+# statsmodels>=0.14,<1
+
+# Java 编程执行组件不增加 Python 包依赖，但需要系统提供 JDK（javac 和 java）。
+# DOCX 文档报告生成可选依赖：
+# python-docx>=1.1,<2
